@@ -1,0 +1,134 @@
+.contaier{
+    height: 100vh;
+    width: 100vw;
+    background-color: #2a2b31;
+    position: relative;
+}
+
+.formContainer{
+    position: absolute;
+    width: 400px;
+    height: 100vh;
+    /* top:50%; */
+    left: 50%;
+    /* background-color: tomato; */
+    transform: translate(-50%);
+    /* align-items: center;
+    justify-content:center; */
+}
+
+.logoDisplay{
+    margin-top: 100px;
+    height: 100px;
+    /* background-color: violet; */
+}
+
+.logo{
+    width: 35%;
+    height: 100px;
+    /* background-color: yellow; */
+    float: left;
+}
+
+.logoWord{
+    float: left;
+    width: 65%;
+    height: 100px;
+    /* background-color:red; */
+}
+
+.formContainerInner{
+    height: 400px;
+    background-color: #373840;
+    padding: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.logoInner{
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    background-color: #373840;
+    float: right;
+    text-align: center;
+    line-height: 50px;
+    color: blueviolet;
+    font-size: 30px;
+    font-weight: 800;
+    
+}
+
+.primerLabel{
+    margin-left: 5px;
+    color: blueviolet;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 50px;
+}
+
+.adminLabel{
+    color: white;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 50px;
+}
+
+.signIn{
+    font-size: 25px;
+    font-weight: 800;
+    color: white;
+}
+
+.formInput{
+    padding-top: 20px;   
+}
+
+.formInputlabel{
+    color: #979797;
+    padding-bottom: 5px;
+
+}
+
+.inputText{
+    padding: 5px;
+    display: inline-block;
+    border: 2px solid  #e0ebeb;
+    border-radius: 5px;
+    font-size: 13px;
+    height: 30px;
+    width: 288px;
+    background-color: #2a2b31;
+    border-color: #2a2b31;
+    color: white;
+}
+
+.rightAlign{
+    float: right;
+}
+
+.button{
+    margin-top: 20px;
+    line-height: 40px;
+    text-align: center;  
+    height: 40px;
+    background-color: blueviolet;
+    color: white;
+}
+
+.createAccount{
+    margin-top: 20px;
+    text-align: center;
+    color:gray;
+}
+.createAccountButton{
+    color: white;
+    padding-top: 10px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.error{
+    color:red;
+    font-size: 11px;
+}

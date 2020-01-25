@@ -1,0 +1,62 @@
+.tableHeader{
+    height: 50px;
+    background-color: #373840;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.tableHeaderIteam{
+    height: 50px;
+    width:calc( 20% - 30px);
+    color: white;
+    float: left;
+    /* text-align: center; */
+    line-height: 50px;
+    margin-left: 30px;
+    /* border: 1px solid black; */
+}
+.displayImage{
+    /* margin-left: 30px; */
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    float: left;
+}
+.displayName{
+    height: 50px;  
+    margin-left: 10px;
+    float: left;
+}
+
+.active{
+    border: 1px solid #4ba85f;
+    border-radius: 20px;
+    color: #4ba85f;
+    display: inline;
+    padding: 5px;
+    padding-left: 30px;
+    padding-right: 20px;
+    position: relative;
+}
+
+.checkImage{
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    background-color: white;
+    top: 9px;
+    left: 8px;
+}
+
+
+.deActive{
+    border: 1px solid #55565a;
+    border-radius: 20px;
+    color: black;
+    display: inline;
+    padding: 5px;
+    padding-left: 13px;
+    padding-right: 13px;
+    position: relative;
+    background-color: #55565a;
+}

@@ -1,0 +1,102 @@
+.contaier{
+    height: 100vh;
+    width: 20%;
+    background-color: #373840;
+    position: relative;
+    float: left;
+}
+
+.logoDisplay{
+    margin-top: 20px;
+    height: 50px;
+    /* background-color: violet; */
+}
+
+.logo{
+    width: 25%;
+    height: 50px;
+    /* background-color: yellow; */
+    float: left;
+}
+
+.logoWord{
+    float: left;
+    width: 75%;
+    height: 50px;
+    /* background-color:red; */
+}
+
+.logoInner{
+    margin-top: 5px;
+
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    background-color: blueviolet;
+    float: right;
+    text-align: center;
+    line-height: 40px;
+    color:#8ba7e6;
+    font-size: 25px;
+    font-weight: 800;
+    
+}
+
+.primerLabel{
+    /* background-color: violet; */
+    margin-left: 5px;
+    color: white;
+    font-size: 25px;
+    font-weight: 800;
+    line-height: 50px;
+}
+
+.sizeBox{
+    height: 50px;
+}
+
+
+.navBarIteamCover{
+   height: 60px;
+}
+.navBarIteam{
+    float: left;
+    width: 90%;
+    height: 60px;
+    color: white;
+    font-size: 15px;
+    line-height: 60px;
+    /* margin-left: 30px; */
+    /* background-color:red; */
+}
+
+.purpleScquire{
+    margin-top:10px;
+    float: left;
+    width: 10%;
+    width: 5px;
+    height: 40px;
+    /* background-color:blueviolet; */
+    border-radius:0px 20px 20px 0px;
+
+}
+
+.dashBoardIteam{
+    margin-left: 24px; 
+}
+
+.activePurpleScquire{
+    background-color:blueviolet;
+    margin-top:10px;
+    float: left;
+    width: 10%;
+    width: 5px;
+    height: 40px;
+    /* background-color:blueviolet; */
+    border-radius:0px 20px 20px 0px;
+}
+
+.activeNavBarIteamCover{
+    height: 60px;
+    background-color: #2a2b31;
+}

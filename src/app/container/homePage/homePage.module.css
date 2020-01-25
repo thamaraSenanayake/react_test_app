@@ -1,0 +1,73 @@
+.contaier{
+    height: 100vh;
+    width: 100vw;
+    background-color: #2a2b31;
+    position: relative;
+}
+
+.pageContainer{
+    margin-left: 20%;
+    width: calc(80% - 100px);
+    height: calc( 100vh - 100px);
+    padding: 50px;
+    /* background-color: red; */
+}
+.toplayer{
+    height: 100px;
+}
+
+.topFirst{
+    height: 40px;
+    width: 40%;
+    /* background-color: rosybrown; */
+    float: left;
+    color: white;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 43px;
+}
+
+.topSecond{
+    /* height: 100px; */
+    width: 40%;
+    /* background-color: salmon; */
+    float: left;
+}
+
+.topThird{
+    height: 43px;
+    width: 20%;
+    background-color: slateblue;
+    float: left;
+    border-radius: 25px;
+    color:white;
+    line-height: 43px;
+    text-align: center;
+}
+
+.inputTextFull{
+    /* padding: 5px; */
+    display: inline-block;
+    border: 0.5px solid  #373840;
+    border-radius: 25px;
+    font-size: 13px;
+    height: 40px;
+    width: 95%;
+    background-color: #373840;
+    /* border-color: #373840; */
+    color: white;   
+}
+
+.tableHeader{
+    height: 50px;
+    background-color: #454757;
+}
+
+.tableHeaderIteam{
+    height: 50px;
+    width:calc( 20% - 30px);
+    color: white;
+    float: left;
+    padding-left: 30px;
+    line-height: 50px;
+}
