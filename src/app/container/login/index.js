@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import styles from './login.module.css';
 import {Link} from 'react-router-dom';
-import HomePage from '../homePage';
+import {connect} from 'react-redux'
 
 class index extends Component {
+    
     constructor(props) {
         super(props)
         
@@ -18,9 +19,10 @@ class index extends Component {
         this.passwordChange = this.passwordChange.bind(this);
         this.userNameChange = this.userNameChange.bind(this);
         this.loginClick = this.loginClick.bind(this);
-
+        
     };
-
+    
+    //Get password from user input
     passwordChange(event){
         this.setState({
             password: event.target.value,
@@ -28,6 +30,7 @@ class index extends Component {
         });
     }
 
+    //get username from user input
     userNameChange(event){
         this.setState({
             userName: event.target.value,
@@ -35,7 +38,9 @@ class index extends Component {
         });
     }
 
+    //login button press
     loginClick(){
+        //validation
         if (this.state.userName.length === 0) {
             this.setState({
                 userNameError:'User name cant be empty'
@@ -61,10 +66,11 @@ class index extends Component {
             }).then(
                 res=>{
                     if(res==="1"){
-                        
-                        console.log(res);
+                        //set redux varibale value
+                        this.props.setUserLogin();
+                        //move to home page
+                        this.props.history.push("/homePage");
                     }else{
-                        // this.history.push('/signIn');
                         this.setState({
                             error:res
                         })
@@ -102,7 +108,7 @@ class index extends Component {
                             <div className={styles.formInputlabel}>
                                 Password <label className={styles.error}> {this.state.passwordError}</label> <label className={styles.rightAlign}>Forgot?</label>
                             </div>
-                            <input type="text" className={styles.inputText} onChange={this.passwordChange}></input>
+                            <input type="password" className={styles.inputText} onChange={this.passwordChange}></input>
                         </div>
                         <label className={styles.error}> {this.state.error}</label>
                         <div className={styles.button} onClick={this.loginClick}>
@@ -121,4 +127,12 @@ class index extends Component {
     }
 }
 
-export default index;
+function mapDispatchToProps(dispatch) {
+    return{
+      setUserLogin:()=>{
+          dispatch({type:'LOG_IN'})
+      }
+    }
+}
+
+export default connect(null,mapDispatchToProps)(index);

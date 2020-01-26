@@ -8,9 +8,9 @@ import Login from './app/container/login';
 import SignIn from './app/container/signIn';
 import HomePage from './app/container/homePage';
 import AddUser from './app/container/AddUser';
+import EditUser from './app/container/EditUser';
 
 function App() {
-  const counter = useSelector(state=>state.counter);
   const isLogged = useSelector(state=>state.isLogged);
   const dispatch = useDispatch();
 
@@ -26,6 +26,7 @@ function App() {
         <Route path="/signIn" component={SignIn}/>
         <Route path="/homePage" component={HomePage}/>
         <Route path="/addUser" component={AddUser}/>
+        <Route path="/editUser/:id" component={EditUser}/>
       </Switch>
     </Router>
   );

@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import styles from './adduser.module.css';
+import styles from './editUser.module.css';
 import SideNav from '../../components/sideNav'
 import {Link} from 'react-router-dom';
 import downArrow from '../../../assets/images/down-arrow.svg'
 import back from '../../../assets/images/back.svg'
-
 export class index extends Component {
 
     constructor(props) {
       super(props)
-    
       this.state = {
+         id:this.props.match.params.id,
          firstName:'',
          firstNameError:'',
          lastName:'',
@@ -24,7 +23,21 @@ export class index extends Component {
          error:'',
          accountType:'Admin',
          userName:'',
-         userNameEror:''
+         userNameEror:'',
+         loading:true,
+         dataSource:null,
+         planCreate:false,
+         planEdit:false,
+         planDelete:false,
+         postCreate:false,
+         postEdit:false,
+         postDelete:false,
+         CommunityCreate:false,
+         CommunityEdit:false,
+         CommunityDelete:false,
+         StoreCreate:false,
+         StoreEdit:false,
+         StoreDelete:false
       };
 
       this.userNameChange = this.userNameChange.bind(this);
@@ -34,12 +47,105 @@ export class index extends Component {
       this.passwordConfirmChange = this.passwordConfirmChange.bind(this);
       this.emailChange = this.emailChange.bind(this);
       this.accountTypeOnChange = this.accountTypeOnChange.bind(this);
-      this.addUserButtonClick = this.addUserButtonClick.bind(this);
+      this.editUserButtonClick = this.editUserButtonClick.bind(this);
+      
+      this.planCreateChnage = this.planCreateChnage.bind(this);
+      this.planEditChnage = this.planEditChnage.bind(this);
+      this.planDeleteChange = this.planDeleteChange.bind(this);
+      
+      this.postCreateChange = this.postCreateChange.bind(this);
+      this.postEditChange = this.postEditChange.bind(this);
+      this.postDeleteChange = this.postDeleteChange.bind(this);
+
+      this.CommunityCreateChange = this.CommunityCreateChange.bind(this);
+      this.CommunityEditChange = this.CommunityEditChange.bind(this);
+      this.CommunityDeleteChange = this.CommunityDeleteChange.bind(this);
+
+      this.StoreCreateChange = this.StoreCreateChange.bind(this);
+      this.StoreEditChange = this.StoreEditChange.bind(this);
+      this.StoreDeleteChange = this.StoreDeleteChange.bind(this);
+      
     };
 
-    //add user 
-    addUserButtonClick(){
-        //validation
+    //set user inputs
+    StoreDeleteChange(){
+        this.setState({
+            StoreDelete:!this.state.StoreDelete,
+        })
+    }
+
+    StoreEditChange(){
+        this.setState({
+            StoreEdit:!this.state.StoreEdit,
+        })
+    }
+
+    StoreCreateChange(){
+        this.setState({
+            StoreCreate:!this.state.StoreCreate,
+        })
+    }
+
+    CommunityDeleteChange(){
+        this.setState({
+            CommunityDelete:!this.state.CommunityDelete,
+        })
+    }
+
+    CommunityEditChange(){
+        this.setState({
+            CommunityEdit:!this.state.CommunityEdit,
+        })
+    }
+
+    CommunityCreateChange(){
+        this.setState({
+            CommunityCreate:!this.state.CommunityCreate,
+        })
+    } 
+
+    postCreateChange(){
+        this.setState({
+            postCreate:!this.state.postCreate,
+        })
+    } 
+    
+    postEditChange(){
+        this.setState({
+            postEdit:!this.state.postEdit,
+        })
+    }
+    
+    postDeleteChange(){
+        this.setState({
+            postDelete:!this.state.postDelete,
+        })
+    }
+
+    planCreateChnage(event){
+        console.log(event);
+        this.setState({
+            planCreate:!this.state.planCreate,
+        })
+    }
+
+    planEditChnage(event){
+        console.log(event);
+        this.setState({
+            planEdit:!this.state.planEdit,
+        })
+    }
+
+    planDeleteChange(event){
+        console.log(event);
+        this.setState({
+            planDelete:!this.state.planDelete,
+        })
+    }
+
+    //edit user button click
+    editUserButtonClick(){
+        console.log(this.refs.planCreate.checked);
         if (this.state.firstName.length === 0) {
             this.setState({
                 firstNameError:'First name cant be null',
@@ -72,8 +178,7 @@ export class index extends Component {
                 passwordConfirmError:'re enter your password',
             })
         }else{
-            //send data to API
-            fetch('http://192.168.8.100/react/addNewUser.php',
+            fetch('http://192.168.8.100/react/updateNewUser.php',
             {
                 method:'POST',
                 headers: {
@@ -123,7 +228,6 @@ export class index extends Component {
 
     }
 
-    //set user inputs
     accountTypeOnChange(text){
         this.setState({
             accountType:text
@@ -170,8 +274,71 @@ export class index extends Component {
             emailError:''
         });
     }
+
+    //loade user data
+    componentDidMount(){
+        return fetch('http://192.168.8.100/react/getUser.php?id='+this.state.id,
+        {
+            method:'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        }).then(res=>{
+            return res.json()
+        }).then(
+            res=>{
+                console.log(res);
+                this.setState({
+                    dataSource:res,
+                    loading:false,
+                });
+                this.setData();       
+            }
+        );
+    }
+
+    checkboxAvalability(num){
+        if(num === "1"){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    //set loaded to form 
+    setData(){
+        console.log(this.state.dataSource[0].firstName);
+        this.setState({
+            firstName:this.state.dataSource[0].firstName,
+            lastName:this.state.dataSource[0].lastName,
+            email:this.state.dataSource[0].email,
+            accountType:this.state.dataSource[0].role,
+            userName:this.state.dataSource[0].userName,
+            
+            planCreate:this.checkboxAvalability(this.state.dataSource[0].planCreate),
+            planEdit:this.checkboxAvalability(this.state.dataSource[0].planEdit),
+            planDelete:this.checkboxAvalability(this.state.dataSource[0].planDelete),
+            
+            postCreate:this.checkboxAvalability(this.state.dataSource[0].postCreate),
+            postEdit:this.checkboxAvalability(this.state.dataSource[0].postEdit),
+            postDelete:this.checkboxAvalability(this.state.dataSource[0].postDelete),
+            
+            CommunityCreate:this.checkboxAvalability(this.state.dataSource[0].CommunityCreate),
+            CommunityEdit:this.checkboxAvalability(this.state.dataSource[0].CommunityEdit),
+            CommunityDelete:this.checkboxAvalability(this.state.dataSource[0].CommunityDelete),
+            
+            StoreCreate:this.checkboxAvalability(this.state.dataSource[0].StoreCreate),
+            StoreEdit:this.checkboxAvalability(this.state.dataSource[0].StoreEdit),
+            StoreDelete:this.checkboxAvalability(this.state.dataSource[0].StoreDelete),
+
+
+        });
+    }
     
     render() {
+        
         return (
             <div className={styles.contaier}>
                 <SideNav/>
@@ -179,7 +346,7 @@ export class index extends Component {
                     <div className={styles.toplayer}>
                         
                         <div className={styles.topFirst}>
-                            Account Management
+                            {this.state.firstName+" "+this.state.lastName}
                         </div>
 
                         <Link to='/homePage'>
@@ -195,7 +362,7 @@ export class index extends Component {
                             <div className={styles.formInputlabel}>
                                 User Name <label className={styles.error}>  {this.state.userNameEror} </label>
                             </div>
-                            <input type="text" className={styles.inputText} onChange={this.userNameChange}></input>
+                            <input type="text" className={styles.inputText} onChange={this.userNameChange} value={this.state.userName}></input>
                         </div>
                     </div>
 
@@ -204,13 +371,13 @@ export class index extends Component {
                             <div className={styles.formInputlabel}>
                                 First name <label className={styles.error}> {this.state.firstNameError} </label>
                             </div>
-                            <input type="text" className={styles.inputText} onChange={this.firstNameChange}></input>
+                            <input type="text" className={styles.inputText} onChange={this.firstNameChange} value={this.state.firstName}></input>
                         </div>
                         <div className={styles.formInputHalf}>
                             <div className={styles.formInputlabel}>
                                 Last name <label className={styles.error}> {this.state.lastNameError} </label>
                             </div>
-                            <input type="text" className={styles.inputText} onChange={this.lastnameChange}></input>
+                            <input type="text" className={styles.inputText} onChange={this.lastnameChange} value={this.state.lastName}></input>
                         </div>
                     </div>
 
@@ -219,7 +386,7 @@ export class index extends Component {
                             <div className={styles.formInputlabel}>
                                 Email <label className={styles.error}>  {this.state.emailError} </label>
                             </div>
-                            <input type="text" className={styles.inputText} onChange={this.emailChange}></input>
+                            <input type="text" className={styles.inputText} onChange={this.emailChange} value={this.state.email}></input>
                         </div>
                     </div>
 
@@ -285,17 +452,17 @@ export class index extends Component {
                             </div>
 
                             <div className={styles.permissionTableData}>
-                                <input type="checkbox" id="planCreate" className={styles.checkbox} ref="planCreate"/>  
+                                <input type="checkbox" id="planCreate" className={styles.checkbox} ref="planCreate" checked={this.state.planCreate} onChange={this.planCreateChnage}/>  
                                 <label htmlFor="planCreate" className={styles.switch}></label>
                             </div>
 
                             <div className={styles.permissionTableData}>
-                                <input type="checkbox" id="planEdit" className={styles.checkbox} ref="planEdit" />  
+                                <input type="checkbox" id="planEdit" className={styles.checkbox} ref="planEdit" checked={this.state.planEdit} onChange={this.planEditChnage}/>  
                                 <label htmlFor="planEdit" className={styles.switch}></label>
                             </div>
 
                             <div className={styles.permissionTableData}>
-                                <input type="checkbox" id="planDelete" className={styles.checkbox} ref="planDelete" />  
+                                <input type="checkbox" id="planDelete" className={styles.checkbox} ref="planDelete" checked={this.state.planDelete} onChange={this.planDeleteChange}/>  
                                 <label htmlFor="planDelete" className={styles.switch}></label>
                             </div>
 
@@ -308,17 +475,17 @@ export class index extends Component {
                             </div>
 
                             <div className={styles.permissionTableData}>
-                                <input type="checkbox" id="postCreate" className={styles.checkbox} ref="postCreate"/>  
+                                <input type="checkbox" id="postCreate" className={styles.checkbox} ref="postCreate" checked={this.state.postCreate} onChange={this.postCreateChange}/>  
                                 <label htmlFor="postCreate" className={styles.switch}></label>
                             </div>
 
                             <div className={styles.permissionTableData}>
-                                <input type="checkbox" id="postEdit" className={styles.checkbox} ref="postEdit" />  
+                                <input type="checkbox" id="postEdit" className={styles.checkbox} ref="postEdit" checked={this.state.postEdit} onChange={this.postEditChange}/>    
                                 <label htmlFor="postEdit" className={styles.switch}></label>
                             </div>
 
                             <div className={styles.permissionTableData}>
-                                <input type="checkbox" id="postDelete" className={styles.checkbox} ref="postDelete"/>  
+                                <input type="checkbox" id="postDelete" className={styles.checkbox} ref="postDelete" checked={this.state.postDelete}  onChange={this.postDeleteChange}/>  
                                 <label htmlFor="postDelete" className={styles.switch}></label>
                             </div>
                             
@@ -331,17 +498,17 @@ export class index extends Component {
                             </div>
 
                             <div className={styles.permissionTableData}>
-                                <input type="checkbox" id="CommunityCreate" className={styles.checkbox} ref="CommunityCreate" />  
+                                <input type="checkbox" id="CommunityCreate" className={styles.checkbox} ref="CommunityCreate" checked={this.state.CommunityCreate} onChange={this.CommunityCreateChange}/>  
                                 <label htmlFor="CommunityCreate" className={styles.switch}></label>
                             </div>
 
                             <div className={styles.permissionTableData}>
-                                <input type="checkbox" id="CommunityEdit" className={styles.checkbox} ref="CommunityEdit"  />  
+                                <input type="checkbox" id="CommunityEdit" className={styles.checkbox} ref="CommunityEdit" checked={this.state.CommunityEdit} onChange={this.CommunityEditChange}/>  
                                 <label htmlFor="CommunityEdit" className={styles.switch}></label>
                             </div>
 
                             <div className={styles.permissionTableData}>
-                                <input type="checkbox" id="CommunityDelete" className={styles.checkbox} ref="CommunityDelete"  />  
+                                <input type="checkbox" id="CommunityDelete" className={styles.checkbox} ref="CommunityDelete"  checked={this.state.CommunityDelete} onChange={this.CommunityDeleteChange}/>  
                                 <label htmlFor="CommunityDelete" className={styles.switch}></label>
                             </div>
                             
@@ -354,17 +521,17 @@ export class index extends Component {
                             </div>
 
                             <div className={styles.permissionTableData}>
-                                <input type="checkbox" id="StoreCreate" className={styles.checkbox}  ref="StoreCreate"/>  
+                                <input type="checkbox" id="StoreCreate" className={styles.checkbox}  ref="StoreCreate" checked={this.state.StoreCreate}  onChange={this.StoreCreateChange}/>  
                                 <label htmlFor="StoreCreate" className={styles.switch}></label>
                             </div>
 
                             <div className={styles.permissionTableData}>
-                                <input type="checkbox" id="StoreEdit" className={styles.checkbox} ref="StoreEdit"/>  
+                                <input type="checkbox" id="StoreEdit" className={styles.checkbox} ref="StoreEdit" checked={this.state.StoreEdit}  onChange={this.StoreEditChange}/>  
                                 <label htmlFor="StoreEdit" className={styles.switch}></label>
                             </div>
 
                             <div className={styles.permissionTableData}>
-                                <input type="checkbox" id="StoreDelete" className={styles.checkbox} ref="StoreDelete"/>  
+                                <input type="checkbox" id="StoreDelete" className={styles.checkbox} ref="StoreDelete" checked={this.state.StoreDelete}  onChange={this.StoreDeleteChange}/>  
                                 <label htmlFor="StoreDelete" className={styles.switch}></label>
                             </div>
                             
@@ -374,9 +541,17 @@ export class index extends Component {
 
                     <label className={styles.error}> {this.state.error} </label>
 
-                    <div className={styles.createAccountButton} onClick={this.addUserButtonClick}>
-                        Create Account
-                    </div>
+                    <label className={styles.createAccountButton} onClick={this.editUserButtonClick}>
+                        Update Account
+                    </label>
+                    
+                    <label className={styles.deleteAccountButton} onClick={this.editUserButtonClick}>
+                        Delete Account
+                    </label>
+
+                    <label className={styles.deactivateAccount} onClick={this.editUserButtonClick}>
+                        Deactivate Account
+                    </label>
 
                 </div>
                 

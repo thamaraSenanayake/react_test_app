@@ -206,6 +206,35 @@
       cursor: pointer;
   }
 
+  .deleteAccountButton{
+    color: white;
+    background-color: red;
+    font-size: 15px;
+    width: 150px;
+    float: right;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin-top: 30px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  .deactivateAccount{
+    color: white;
+    border: 1px solid white;
+    /* background-color: red; */
+    font-size: 15px;
+    width: 150px;
+    float: right;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin-top: 30px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
   .backIcon{
     width: 20px;
     padding-top: 10px;

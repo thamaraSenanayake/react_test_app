@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from './SideNav.module.css';
+
+//genarate side nav bar
 function index() {
     return (
         <div className={styles.contaier}>

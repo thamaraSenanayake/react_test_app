@@ -6,10 +6,18 @@ import searchIcon from '../../../assets/images/search.svg'
 import plus from '../../../assets/images/plus.svg'
 import downArrow from '../../../assets/images/down-arrow.svg'
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux'
+
 export class index extends Component {
     
     constructor(props) {
       super(props)
+    
+      //check user validity
+      if(!this.props.Islogged){
+        console.log("exit");
+        this.props.history.push("/");
+      }
     
       this.state = {
          loading:true,
@@ -17,6 +25,7 @@ export class index extends Component {
       };
     };
     
+    //load users data
     componentDidMount(){
         return fetch('http://192.168.8.100/react/viewUser.php',
         {
@@ -94,4 +103,10 @@ export class index extends Component {
     }
 }
 
-export default index
+function mapStateToProps(state) {
+    return{
+        Islogged:state.Islogged,
+    }
+  }
+
+export default connect(mapStateToProps,null)(index);

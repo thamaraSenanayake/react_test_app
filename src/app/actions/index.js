@@ -1,5 +1,13 @@
-export const increment= ()=>{
+
+
+export const setLogin= ()=>{
     return{
-        type:'INCREMENT'
+        type:'LOG_IN'
+    }
+}
+
+export const removeLogin= ()=>{
+    return{
+        type:'LOG_OUT'
     }
 }

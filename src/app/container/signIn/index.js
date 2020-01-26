@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styles from './signIn.module.css';
-import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
-import HomePage from '../homePage';
+import {connect} from 'react-redux'
+
 class index extends Component {
     constructor(props) {
       super(props)
@@ -30,10 +30,10 @@ class index extends Component {
 
     };
 
+    //sign in button click
     signInButtonClick(){
         
-        console.log(this.state.firstName);
-        
+        //validation
         if (this.state.firstName.length === 0) {
             this.setState({
                 firstNameError:'First name cant be null'
@@ -58,6 +58,7 @@ class index extends Component {
                 emailError:'email cant be null'
             })   
         }else{
+            //send adta to API
             fetch('http://192.168.8.100/react/addUser.php',
             {
                 method:'POST',
@@ -75,10 +76,11 @@ class index extends Component {
                 return res.text()
             }).then(
                 res=>{
-                    if(res==="Done"){
-                        return(
-                            <Route path="/homePage" component={HomePage}/>
-                        )
+                    if(res==="1"){
+                        //set redux variable
+                        this.props.setUserLogin();
+                        //move to home page
+                        this.props.history.push("/homePage");
                     }else{
                         console.log(res);
                     }
@@ -87,6 +89,7 @@ class index extends Component {
         }
     }
 
+    //get user inputs
     firstNameChange(event){
         this.setState({
             firstName: event.target.value,
@@ -121,11 +124,6 @@ class index extends Component {
             emailError:''
         });
     }
-
-
-
-
-
     
     render() {
         return (
@@ -173,13 +171,13 @@ class index extends Component {
                                 <div className={styles.formInputlabel}>
                                     password  <label className={styles.error}> {this.state.passwordError} </label>
                                 </div>
-                                <input type="text" className={styles.inputText} onChange={this.passwordChange}></input>
+                                <input type="password" className={styles.inputText} onChange={this.passwordChange}></input>
                             </div>
                             <div className={styles.formInputHalf}>
                                 <div className={styles.formInputlabel}>
                                     confirm password  <label className={styles.error}> {this.state.passwordConfirmError} </label>
                                 </div>
-                                <input type="text" className={styles.inputText} onChange={this.passwordConfirmChange}></input>
+                                <input type="password" className={styles.inputText} onChange={this.passwordConfirmChange}></input>
                             </div>
                         </div>
                         <label className={styles.error}> {this.state.error} </label>
@@ -194,4 +192,12 @@ class index extends Component {
     }
 }
 
-export default index;
+function mapDispatchToProps(dispatch) {
+    return{
+      setUserLogin:()=>{
+          dispatch({type:'LOG_IN'})
+      }
+    }
+}
+
+export default connect(null,mapDispatchToProps)(index);
