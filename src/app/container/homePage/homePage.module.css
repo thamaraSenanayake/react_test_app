@@ -28,10 +28,18 @@
 }
 
 .topSecond{
-    /* height: 100px; */
     width: 40%;
-    /* background-color: salmon; */
     float: left;
+    position: relative;
+}
+
+.searchIcon{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    /* background-color: red; */
+    top: 11px;
+    right: 35px;
 }
 
 .topThird{
@@ -43,6 +51,23 @@
     color:white;
     line-height: 43px;
     text-align: center;
+    position: relative;
+    /* padding-left: 10px; */
+}
+
+.plusIcon{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    /* background-color: red; */
+    top: 11px;
+    left: 28px;
+}
+
+.downArrow{
+    height: 12px;
+    width: 20px;
+    padding-left: 8px;
 }
 
 .inputTextFull{
@@ -58,6 +83,22 @@
     color: white;   
 }
 
+.inputTextFull::placeholder {
+    padding-left: 30px;
+    color: gray;
+    opacity: 1; /* Firefox */
+}
+  
+.inputTextFull :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    padding-left: 30px;
+    color: gray;
+}
+  
+.inputTextFull ::-ms-input-placeholder { /* Microsoft Edge */
+    padding-left: 30px;
+    color: gray;
+}
+
 .tableHeader{
     height: 50px;
     background-color: #454757;
@@ -70,4 +111,8 @@
     float: left;
     padding-left: 30px;
     line-height: 50px;
+}
+
+.addNewAccountLabel{
+    padding-left: 30px;
 }

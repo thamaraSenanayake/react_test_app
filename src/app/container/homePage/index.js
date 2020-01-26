@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import styles from './homePage.module.css';
 import SideNav from '../../components/sideNav'
 import Person from '../../components/PersonDisplay';
+import searchIcon from '../../../assets/images/search.svg'
+import plus from '../../../assets/images/plus.svg'
+import downArrow from '../../../assets/images/down-arrow.svg'
+import {Link} from 'react-router-dom';
 export class index extends Component {
     
     constructor(props) {
@@ -25,9 +29,7 @@ export class index extends Component {
             return res.json()
         }).then(
             res=>{
-                console.log('====================================');
                 console.log(res);
-                console.log('====================================');
                 this.setState({
                     dataSource:res,
                     loading:false,
@@ -49,30 +51,40 @@ export class index extends Component {
                         <div className={styles.topFirst}>
                             Account Management
                         </div>
+
                         <div className={styles.topSecond}>
                             <input type="text" className={styles.inputTextFull} placeholder="Search by name or email" />
+                            <img src={searchIcon} className={styles.searchIcon}/>
                         </div>
 
-                        <div className={styles.topThird}>
-                            Add New Account
-                        </div>
+                        <Link to='/addUser'>
+                            <div className={styles.topThird}>
+                                <label className={styles.addNewAccountLabel}>Add New Account</label>
+                                <img src={plus} className={styles.plusIcon}/>
+                            </div>
+                        </Link>
                     </div>
 
                     <div className={styles.tableHeader}>
                         <div className={styles.tableHeaderIteam}>
                             Name
+                            <img src={downArrow} className={styles.downArrow}/>
                         </div>
                         <div className={styles.tableHeaderIteam}>
                             Role
+                            <img src={downArrow} className={styles.downArrow}/>
                         </div>
                         <div className={styles.tableHeaderIteam}>
                             Email
+                            <img src={downArrow} className={styles.downArrow}/>
                         </div>
                         <div className={styles.tableHeaderIteam}>
                             Created On
+                            <img src={downArrow} className={styles.downArrow}/>
                         </div>
                         <div className={styles.tableHeaderIteam}>
                             Status
+                            <img src={downArrow} className={styles.downArrow}/>
                         </div>
                     </div>
                     {personListContainer}

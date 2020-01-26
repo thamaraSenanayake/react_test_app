@@ -1,12 +1,14 @@
 import React from 'react'
 import styles from './PersonDisplay.module.css';
+import account from '../../../assets/images/account.svg';
+import correct from '../../../assets/images/correct.svg';
 function index({person}) {
     const date = person.create_date.split(" ");
     return (
         <div className={styles.tableHeader}>
             <div className={styles.tableHeaderIteam}>
-                <div className={styles.displayImage}>
-
+                <div className={styles.displayImageContainer}>
+                    <img src={account} className={styles.displayImage} />
                 </div>
                 <div className={styles.displayName}>
                     {person.firstName+" "+person.lastName}
@@ -27,7 +29,8 @@ function index({person}) {
                 {person.status == 1?
                 
                     <div className={styles.active}>
-                        <div className={styles.checkImage}></div>
+                        {/* <div className={styles.checkImage}></div> */}
+                        <img src={correct} className={styles.checkImage}/>
                         active
                     </div>
                 :

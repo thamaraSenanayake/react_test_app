@@ -1,0 +1,203 @@
+.contaier{
+    height: 100vh;
+    width: 100vw;
+    background-color: #2a2b31;
+    position: relative;
+}
+
+.pageContainer{
+    margin-left: 20%;
+    width: calc(80% - 100px);
+    height: calc( 100vh - 100px);
+    padding: 50px;
+    overflow-y: scroll;
+    /* background-color: red; */
+}
+
+.toplayer{
+    height: 66px;
+}
+
+.topFirst{
+    height: 40px;
+    width: 80%;
+    /* background-color: rosybrown; */
+    float: left;
+    color: white;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 43px;
+}
+
+.topSecond{
+    line-height: 43px;
+    height: 40px;
+    width: 20%;
+    float: left;
+    position: relative;
+    color: white;
+    font-size: 18px;
+    text-align: right;
+}
+
+.BackButtonlabel{
+    padding-right: 20px;
+}
+
+.formInput{
+    padding-top: 20px;   
+    height: 65px;
+}
+
+.formInputHalf{   
+    width:50%;
+    float: left;
+}
+
+.formInputlabel{
+    color: #979797;
+    padding-bottom: 5px;
+
+}
+
+.inputText{
+    padding: 5px;
+    /* display:block; */
+    border: 2px solid  #e0ebeb;
+    border-radius: 5px;
+    font-size: 13px;
+    height: 30px;
+    width: 80%;
+    /* width: 288px; */
+    background-color: #373840;
+    border-color: #373840;
+    color: white;
+}
+
+.dropDown{
+    padding: 5px;
+    /* display:block; */
+    border: 2px solid  #e0ebeb;
+    border-radius: 5px;
+    font-size: 13px;
+    height: 30px;
+    width: 80%;
+    /* width: 288px; */
+    background-color: #373840;
+    border-color: #373840;
+    color: white;
+    line-height: 30px;
+    position: relative;
+}
+
+.downArrow{
+    position: absolute;
+    height: 15px;
+    width: 20px;
+    right: 5px;
+    top: 15px;
+}
+
+.dropDown:hover .dropdownContent {display: block;}
+
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 98%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdownContent label {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.permissionTitle{
+    padding-top:30px;
+    height: 30px;
+    line-height: 30px;
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+}
+
+.permissinContainer{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    border: 1px dashed white;
+    margin-top: 20px;
+}
+
+.permissionTableRow{
+    height: 30px;
+    /* background-color: red; */
+    padding-left: 20px;
+    padding-right: 20px;
+    /* padding-bottom: 5px; */
+}
+
+.permissionTableTitle{
+    height: 30px;
+    /* background-color:yellow; */
+    float: left;
+    width: 60%;  
+    color:white 
+}
+
+.permissionTableData{
+    height: 30px;
+    /* background-color:black; */
+    float: left;
+    width: 13%;   
+    color:white
+}
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    transition: all 0.3s;
+  }
+  .switch::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius:50%;
+    background-color: blueviolet;
+    top: 1px;
+    left: 1px;
+    transition: all 0.3s;
+  }
+  
+  .checkbox:checked + .switch::after {
+    left : 20px;
+  }
+  .checkbox:checked + .switch {
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+  .checkbox {
+    display : none;
+  }
+
+  .createAccountButton{
+      color: white;
+      background-color: blueviolet;
+      font-size: 15px;
+      width: 150px;
+      float: right;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      margin-top: 30px;
+      cursor: pointer;
+  }

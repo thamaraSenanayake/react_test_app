@@ -7,6 +7,7 @@ import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
 import Login from './app/container/login';
 import SignIn from './app/container/signIn';
 import HomePage from './app/container/homePage';
+import AddUser from './app/container/AddUser';
 
 function App() {
   const counter = useSelector(state=>state.counter);
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" exact component={Login}/>
         <Route path="/signIn" component={SignIn}/>
         <Route path="/homePage" component={HomePage}/>
+        <Route path="/addUser" component={AddUser}/>
       </Switch>
     </Router>
   );
